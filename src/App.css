@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 /* Global Styles */
 :root {
@@ -7,6 +7,8 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --custom-color: #00adb5;
+  --custom-clear-color: #fc5185;
 }
 
 * {
@@ -16,7 +18,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -294,6 +296,20 @@ img {
   border: #ccc solid 1px;
 }
 
+.btn-custom,
+.bg-custom,
+.badge-custom,
+.alert-custom {
+  background: var(--custom-color);
+  color: #fff;
+}
+.btn-custom-clear,
+.bg-custom-clear,
+.badge-custom-clear,
+.alert-custom-clear {
+  background: var(--custom-clear-color);
+  color: #fff;
+}
 .btn:hover {
   opacity: 0.8;
 }
@@ -318,10 +334,10 @@ input {
   color: #888;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='date'],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
 select,
 textarea {
   display: block;
@@ -331,7 +347,7 @@ textarea {
   border: 1px solid #ccc;
 }
 
-input[type='submit'],
+input[type="submit"],
 button {
   font: inherit;
 }
@@ -411,4 +427,35 @@ table th {
     text-align: center;
     justify-content: center;
   }
+}
+
+.tilty {
+  background-color: #ffdee9;
+  background-image: linear-gradient(180deg, #ffdee9 0%, #b5fffc 100%);
+
+  box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+  transform: perspective(300px);
+
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-tilt {
+  border: unset;
+  margin: unset;
+}
+
+.user-tilt {
+  transform: translateZ(20px);
+}
+
+.btn-tilt {
+  transform: translateZ(40px);
+}
+
+.btn-border-radius {
+  border-radius: 20px;
 }
