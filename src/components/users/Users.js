@@ -23,7 +23,7 @@ Users.propTypes = {
 };
 const UserStyle = {
   display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
+  gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
   gridGap: "1.5rem",
   margin: "1rem 0",
 };

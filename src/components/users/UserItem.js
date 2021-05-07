@@ -12,6 +12,7 @@ const UserItem = ({ user: { login, avatar_url, html_url } }) => {
       maxGlare={0.5}
       speed={500}
       max={50}
+      gyroscope={false}
     >
       <div className="card text-center card-tilt">
         <img
