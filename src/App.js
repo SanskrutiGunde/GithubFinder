@@ -8,11 +8,14 @@ import axios from "axios";
 import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 import About from "./components/pages/About";
+import SocialIcon from "./components/layout/SocialIcon";
 
 class App extends Component {
   state = {
     users: [],
     user: {},
+    author: {},
+    repos: [],
     loading: false,
     alert: null,
   };
@@ -35,6 +38,24 @@ class App extends Component {
     this.setState({ user: res.data, loading: false });
   };
 
+  // Get Author
+  getAuthor = async () => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/SanskrutiGunde?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({ author: res.data, loading: false });
+  };
+
+  // Get users repos
+  getUserRepos = async (username) => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({ repos: res.data, loading: false });
+  };
+
   // clear user from search
   clearUsers = () => this.setState({ users: [], loading: false });
 
@@ -46,11 +67,12 @@ class App extends Component {
   };
 
   render() {
-    const { users, user, loading } = this.state;
+    const { users, user, repos, loading, author } = this.state;
     return (
       <Router>
         <div className="App">
           <Navbar />
+          <SocialIcon />
           <div className="container">
             <Alert alert={this.state.alert} />
             <Switch>
@@ -69,7 +91,18 @@ class App extends Component {
                   </Fragment>
                 )}
               />
-              <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/about"
+                render={(props) => (
+                  <About
+                    {...props}
+                    author={author}
+                    getAuthor={this.getAuthor}
+                    loading={loading}
+                  />
+                )}
+              />
               <Route
                 exact
                 path="/user/:login"
@@ -77,7 +110,9 @@ class App extends Component {
                   <User
                     {...props}
                     getUser={this.getUser}
+                    getUserRepos={this.getUserRepos}
                     user={user}
+                    repos={repos}
                     loading={loading}
                   />
                 )}
