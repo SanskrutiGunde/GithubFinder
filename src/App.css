@@ -554,3 +554,10 @@ table th {
   background: #383737;
   color: white;
 }
+
+.nouser {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding-top: 10vw;
+}

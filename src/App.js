@@ -9,6 +9,7 @@ import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 import About from "./components/pages/About";
 import SocialIcon from "./components/layout/SocialIcon";
+import { ReactComponent as SearchUser } from "./search-user.svg";
 
 let githubClientId, githubClientSecret;
 
@@ -96,7 +97,13 @@ class App extends Component {
                       showClear={users.length > 0 ? true : false}
                       setAlert={this.setAlert}
                     />
-                    <Users loading={loading} users={users} />
+                    {users.length > 0 ? (
+                      <Users loading={loading} users={users} />
+                    ) : (
+                      <div className="nouser">
+                        <SearchUser width={"40%"} height={"20%"} />
+                      </div>
+                    )}
                   </Fragment>
                 )}
               />
